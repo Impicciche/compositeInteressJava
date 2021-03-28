@@ -6,7 +6,7 @@ public class CalcoloInteresseComposto {
 	public static void main(String[] args) {
 		CalcoloInteresseCompostoModel model = new CalcoloInteresseCompostoModel();
 		CalcoloInteresseCompostoView view = new CalcoloInteresseCompostoView();
-		
+				
 		new CalcoloInteresseCompostoController(model, view);
 		
 	}

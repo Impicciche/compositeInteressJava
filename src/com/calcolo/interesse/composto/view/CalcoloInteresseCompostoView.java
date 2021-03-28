@@ -16,6 +16,7 @@ import javax.swing.event.ChangeListener;
 
 
 
+
 public class CalcoloInteresseCompostoView extends JFrame implements ChangeListener{
 	private static final long serialVersionUID = 1L;
 	private final int percentualeInteresseInziale = 7;
@@ -28,6 +29,11 @@ public class CalcoloInteresseCompostoView extends JFrame implements ChangeListen
 	private JLabel labelCapitaleFinale;
 	
 	
+	private JLabel labelErrorAnni;
+	private JLabel labelErrorInteresse;
+	private JLabel labelErrorCapitaleIniziale;
+	private JLabel labelErrorAggiunteMensili;
+	
 	private JTextField textFieldAnni;
 	private JTextField textFieldAggiunteMensili;
 	private JTextField textFieldCapitaleIniziale;
@@ -37,8 +43,113 @@ public class CalcoloInteresseCompostoView extends JFrame implements ChangeListen
 	
 	
 	
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
+	public int getPercentualeInteresseInziale() {
+		return percentualeInteresseInziale;
+	}
+
+
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+
+
+	public JLabel getLabelAnni() {
+		return labelAnni;
+	}
+
+
+
+	public JLabel getLabelInteresse() {
+		return labelInteresse;
+	}
+
+
+
+	public JLabel getLabelCapitaleIniziale() {
+		return labelCapitaleIniziale;
+	}
+
+
+
+	public JLabel getLabelAggiunteMensili() {
+		return labelAggiunteMensili;
+	}
+
+
+
+	public JLabel getLabelCapitaleFinale() {
+		return labelCapitaleFinale;
+	}
+
+
+
+	public JTextField getTextFieldAnni() {
+		return textFieldAnni;
+	}
+
+
+
+	public JTextField getTextFieldAggiunteMensili() {
+		return textFieldAggiunteMensili;
+	}
+
+
+
+	public JTextField getTextFieldCapitaleIniziale() {
+		return textFieldCapitaleIniziale;
+	}
+
+
+
+	public JSlider getProgressInteresse() {
+		return progressInteresse;
+	}
+
+
+
+	public JButton getCalcola() {
+		return calcola;
+	}
+
+
+
+	public void setTextFieldAnni(JTextField textFieldAnni) {
+		this.textFieldAnni = textFieldAnni;
+	}
+
+
+
+	public void setTextFieldAggiunteMensili(JTextField textFieldAggiunteMensili) {
+		this.textFieldAggiunteMensili = textFieldAggiunteMensili;
+	}
+
+
+
+	public void setTextFieldCapitaleIniziale(JTextField textFieldCapitaleIniziale) {
+		this.textFieldCapitaleIniziale = textFieldCapitaleIniziale;
+	}
+
+
+
+	public void setProgressInteresse(JSlider progressInteresse) {
+		this.progressInteresse = progressInteresse;
+	}
+
+
+
 	public CalcoloInteresseCompostoView() {
 		super("Calcolo Interesse Composto");
+		
+		
 		ImageIcon img = new ImageIcon("resources/images/bank.png");
 		
 		this.setIconImage(img.getImage());
@@ -48,6 +159,12 @@ public class CalcoloInteresseCompostoView extends JFrame implements ChangeListen
 		labelCapitaleIniziale = new JLabel("Capitale iniziale");
 		labelAggiunteMensili = new JLabel("Aggiunte Mensili");
 		labelInteresse = new JLabel(String.format("Percentuale d'investimento medio annuo %s %%",this.percentualeInteresseInziale));
+		
+		labelErrorAnni = new JLabel("");
+		labelErrorCapitaleIniziale = new JLabel("");
+		labelErrorAggiunteMensili = new JLabel("");
+		labelErrorInteresse = new JLabel("");
+		
 		labelCapitaleFinale = new JLabel();
 		
 		textFieldAnni = new JTextField("10");
@@ -67,23 +184,33 @@ public class CalcoloInteresseCompostoView extends JFrame implements ChangeListen
 		progressInteresse.addChangeListener(this);
 		
 		
+		
+		
 		panel.add(labelAnni);
 		panel.add(textFieldAnni);
+		panel.add(labelErrorAnni);
+		
 		
 		panel.add(labelCapitaleIniziale);
 		panel.add(textFieldCapitaleIniziale);
+		panel.add(labelErrorCapitaleIniziale);
+		
 		
 		panel.add(labelAggiunteMensili);
 		panel.add(textFieldAggiunteMensili);
+		panel.add(labelErrorAggiunteMensili);
+		
 		
 		panel.add(labelInteresse);
 		panel.add(progressInteresse);
+		panel.add(labelErrorInteresse);
+		
 		
 		panel.add(calcola);
 		
 		panel.add(labelCapitaleFinale);
 		
-		panel.setLayout(new GridLayout(10,1));
+		panel.setLayout(new GridLayout(14,1));
 		
 		panel.setBorder(new EmptyBorder(10,10,10,10));
 		
@@ -112,11 +239,11 @@ public class CalcoloInteresseCompostoView extends JFrame implements ChangeListen
 	}
 	
 	public double getCapitaleIniziale() {
-		return Double.parseDouble(this.textFieldCapitaleIniziale.getText());
+		return Double.parseDouble(this.textFieldCapitaleIniziale.getText().replace(",","."));
 	}
 	
 	public double getAggiunteMensili() {
-		return Double.parseDouble(this.textFieldAggiunteMensili.getText());
+		return Double.parseDouble(this.textFieldAggiunteMensili.getText().replace(",","."));
 	}
 	
 	public int getAnni() {
@@ -130,6 +257,54 @@ public class CalcoloInteresseCompostoView extends JFrame implements ChangeListen
 	public void setCapitaleFinale(double capitale) {
 		this.labelCapitaleFinale.setVisible(true);
 		this.labelCapitaleFinale.setText(String.format("Capitale finale %.2f €",capitale));
+	}
+
+
+
+	public JLabel getLabelErrorAnni() {
+		return labelErrorAnni;
+	}
+
+
+
+	public void setLabelErrorAnni(JLabel labelErrorAnni) {
+		this.labelErrorAnni = labelErrorAnni;
+	}
+
+
+
+	public JLabel getLabelErrorInteresse() {
+		return labelErrorInteresse;
+	}
+
+
+
+	public void setLabelErrorInteresse(JLabel labelErrorInteresse) {
+		this.labelErrorInteresse = labelErrorInteresse;
+	}
+
+
+
+	public JLabel getLabelErrorCapitaleIniziale() {
+		return labelErrorCapitaleIniziale;
+	}
+
+
+
+	public void setLabelErrorCapitaleIniziale(JLabel labelErrorCapitaleIniziale) {
+		this.labelErrorCapitaleIniziale = labelErrorCapitaleIniziale;
+	}
+
+
+
+	public JLabel getLabelErrorAggiunteMensili() {
+		return labelErrorAggiunteMensili;
+	}
+
+
+
+	public void setLabelErrorAggiunteMensili(JLabel labelErrorAggiunteMensili) {
+		this.labelErrorAggiunteMensili = labelErrorAggiunteMensili;
 	}
 
 }

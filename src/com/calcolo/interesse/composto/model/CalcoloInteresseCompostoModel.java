@@ -11,10 +11,11 @@ public class CalcoloInteresseCompostoModel {
 	public CalcoloInteresseCompostoModel() {
 	}
 
-	public CalcoloInteresseCompostoModel(double interesse, int anni, double capitaleIniziale) {
+	public CalcoloInteresseCompostoModel(double interesse, int anni, double capitaleIniziale,double aggiunteMensili) {
 		this.interesse = interesse;
 		this.anni = anni;
 		this.capitaleIniziale = capitaleIniziale;
+		this.aggiunteMensili = aggiunteMensili;
 	}
 	
 	
@@ -22,27 +23,31 @@ public class CalcoloInteresseCompostoModel {
 		return aggiunteMensili;
 	}
 	
-	public void setAggiunteMensili(double aggiunteMensili) {
+	public CalcoloInteresseCompostoModel setAggiunteMensili(double aggiunteMensili) {
 		this.aggiunteMensili = aggiunteMensili;
+		return this;
 	}
 	
 	public double getInteresse() {
 		return interesse;
 	}
-	public void setInteresse(double interesse) {
+	public CalcoloInteresseCompostoModel setInteresse(double interesse) {
 		this.interesse = interesse;
+		return this;
 	}
 	public int getAnni() {
 		return anni;
 	}
-	public void setAnni(int anni) {
+	public CalcoloInteresseCompostoModel setAnni(int anni) {
 		this.anni = anni;
+		return this;
 	}
 	public double getCapitaleIniziale() {
 		return capitaleIniziale;
 	}
-	public void setCapitaleIniziale(double capitaleIniziale) {
+	public CalcoloInteresseCompostoModel setCapitaleIniziale(double capitaleIniziale) {
 		this.capitaleIniziale = capitaleIniziale;
+		return this;
 	}
 
 	public double calcolaCapitale() {
